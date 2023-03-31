@@ -8,7 +8,7 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
-EXPOSE 6379
+# EXPOSE 6379
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential libpq-dev && \

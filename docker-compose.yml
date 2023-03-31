@@ -8,14 +8,13 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
+    environment:
+      - REDIS_USER=${REDIS_USER}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
     command: >
       sh -c "python manage.py migrate"
-
-    environment:
-      - DB_HOST=db
-      - DB_NAME=redisdb
-      - DB_USER=yhayami1
-      - DB_PASSWORD=admin
     depends_on:
       - db
 
@@ -26,9 +25,10 @@ services:
     volumes:
       - dev-redis-db-data:/var/lib/redis/data
     environment:
-      - REDIS_DB=redisdb
-      - REDIS_USER=yhayami1
-      - REDIS_PASSWORD=admin
+      - REDIS_USER=${REDIS_USER}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
 
 volumes:
   dev-redis-db-data:

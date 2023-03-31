@@ -2,3 +2,4 @@ django>=4.1.7
 channels>=4.0
 daphne>=4.0.0
 channels_redis
+django-environ

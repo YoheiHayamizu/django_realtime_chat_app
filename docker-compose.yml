@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py migrate"
+
+    environment:
+      - DB_HOST=db
+      - DB_NAME=redisdb
+      - DB_USER=yhayami1
+      - DB_PASSWORD=admin
+    depends_on:
+      - db
+
+  db:
+    image: redis:5
+    ports:
+      - "6379:6379"
+    volumes:
+      - dev-redis-db-data:/var/lib/redis/data
+    environment:
+      - REDIS_DB=redisdb
+      - REDIS_USER=yhayami1
+      - REDIS_PASSWORD=admin
+
+volumes:
+  dev-redis-db-data:

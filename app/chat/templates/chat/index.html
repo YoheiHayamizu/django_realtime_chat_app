@@ -1,0 +1,68 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat Rooms</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+
+            <div class="columns is-multiline">
+                <div class="column is-6 is-offset-3 mb-6">
+                    <section class="hero is-primary">
+                        <div class="hero-body">
+                            <p class="title">Chat Rooms</p>
+                            <p class="subtitle">Click a button to start</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="column is-4 is-offset-4">
+                <div class="field">
+                    <label class="label">Room Name</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Room Name" id="room-name-input">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Username" id="username-input">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <a class="button is-info" id="room-name-submit">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelector("#room-name-input").focus();
+
+        document.querySelector('#room-name-input').onkeyup = function (e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector("#room-name-submit").onclick = function (e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+
+</body>
+
+</html>
